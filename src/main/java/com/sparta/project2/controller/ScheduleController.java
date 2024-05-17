@@ -6,6 +6,7 @@ import com.sparta.project2.entity.Schedule;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -22,4 +23,20 @@ public class ScheduleController {
         ScheduleResponseDto scheduleResponseDto = new ScheduleResponseDto(schedule);
         return scheduleResponseDto;
     }
-}
+
+    @GetMapping("/schedule/{id}") // 선택한 일정 조회
+    public ScheduleResponseDto getSchedule(@PathVariable Long id) {
+        Schedule schedule = scheduleList.get(id);
+        ScheduleResponseDto scheduleResponseDto = new ScheduleResponseDto(schedule);
+        return scheduleResponseDto;
+    }
+
+
+//    @GetMapping("/schedule") // 일정 목록 조회
+//    public List<ScheduleResponseDto> getSchedule() {
+//        List<ScheduleResponseDto> responseList = scheduleList.values().stream()
+//                .map(ScheduleResponseDto::new).toList();
+//
+//        return responseList;
+//    }
+//}
