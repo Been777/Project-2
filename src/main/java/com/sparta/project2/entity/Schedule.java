@@ -25,4 +25,10 @@ public class Schedule {
         this.password = requestDto.getPassword();
         this.date = requestDto.getDate();
     }
+
+    public void update(ScheduleRequestDto requestDto) {
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
+        this.password = requestDto.getPassword();
+    }
 }

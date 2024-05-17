@@ -31,7 +31,6 @@ public class ScheduleController {
         return scheduleResponseDto;
     }
 
-
     @GetMapping("/schedule") // 일정 목록 조회
     public List<ScheduleResponseDto> getSchedule() {
         List<ScheduleResponseDto> responseList = scheduleList.values().stream()
@@ -39,4 +38,19 @@ public class ScheduleController {
 
         return responseList;
     }
+
+    @PutMapping("/schedule/{id}") // 선택한 일정 수정
+    public Long updateSchedule(@PathVariable Long id, @RequestBody ScheduleRequestDto requestDto) {
+        if(scheduleList.containsKey(id)) {
+            Schedule schedule = scheduleList.get(id);
+            if (!requestDto.getPassword().equals(schedule.getPassword())) {
+                throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            }
+            schedule.update(requestDto);
+            return schedule.getId();
+        } else {
+            throw new IllegalArgumentException("선택한 일정은 존재하지 않습니다.");
+        }
+    }
+
 }
