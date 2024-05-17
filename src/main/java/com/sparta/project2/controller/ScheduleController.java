@@ -32,11 +32,11 @@ public class ScheduleController {
     }
 
 
-//    @GetMapping("/schedule") // 일정 목록 조회
-//    public List<ScheduleResponseDto> getSchedule() {
-//        List<ScheduleResponseDto> responseList = scheduleList.values().stream()
-//                .map(ScheduleResponseDto::new).toList();
-//
-//        return responseList;
-//    }
-//}
+    @GetMapping("/schedule") // 일정 목록 조회
+    public List<ScheduleResponseDto> getSchedule() {
+        List<ScheduleResponseDto> responseList = scheduleList.values().stream()
+                .map(ScheduleResponseDto::new).toList();
+
+        return responseList;
+    }
+}
