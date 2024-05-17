@@ -31,4 +31,10 @@ public class Schedule {
         this.contents = requestDto.getContents();
         this.password = requestDto.getPassword();
     }
+
+    public void delete(ScheduleRequestDto requestDto) {
+        this.username = requestDto.getUsername();
+        this.contents = requestDto.getContents();
+        this.password = requestDto.getPassword();
+    }
 }

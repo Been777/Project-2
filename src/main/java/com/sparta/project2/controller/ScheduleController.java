@@ -1,5 +1,6 @@
 package com.sparta.project2.controller;
 
+import ch.qos.logback.core.net.SMTPAppenderBase;
 import com.sparta.project2.dto.ScheduleRequestDto;
 import com.sparta.project2.dto.ScheduleResponseDto;
 import com.sparta.project2.entity.Schedule;
@@ -53,4 +54,19 @@ public class ScheduleController {
         }
     }
 
+    @DeleteMapping("/schedule/{id}") // 선택한 일정 삭제
+    public Long deleteSchedule(@PathVariable Long id, @RequestBody ScheduleRequestDto requestDto) {
+        // 해당 메모가 DB에 존재하는지 확인
+        if(scheduleList.containsKey(id)) {
+            if (schedule.getPassword().equals(requestDto.getPassword())) {
+                // 일치하면 일정 삭제
+                scheduleList.remove(id);
+                return id;
+            } else {
+                throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            }
+        } else {
+            throw new IllegalArgumentException("선택한 일정은 존재하지 않습니다.");
+        }
+    }
 }
